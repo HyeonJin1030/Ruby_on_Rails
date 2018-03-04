@@ -1,0 +1,29 @@
+<h1>여기는 게시물 목록이 나올 페이지입니다!</h1>
+<a href='/home/new'>새 글 쓰기</a>
+<br><br>
+
+<%@posts.each do |x|%> 
+    제목: <%=x.title%><br> <!--'='하면 우리 눈에 보여-->
+    내용: <%=x.content%><br>
+    
+    <br>
+    <a href='/home/destroy/<%=x.id%>'>
+        <button>[삭제1]</button>
+    </a> <!--다 다른 링크가 걸려있어-->
+    <%=link_to '[삭제2]',"/home/destroy/#{x.id}"%><!--쌍따옴표 여야함-->
+    <%=link_to '[삭제3]', post_destroy_path(post_id: x.id)%> <!--위와 같은의미-->
+    <%=link_to post_destroy_path(post_id: x.id) do%>
+        <button>[삭제4]</button>
+    <%end%>
+    <br>
+    
+    <a href='/home/edit/<%=x.id%>'>[수정1]</a> <!--다 다른 링크가 걸려있어-->
+    <%=link_to "/home/edit/#{x.id}" do%>
+        <button>[수정2]</button>
+    <%end%>
+    <br>
+    -------------------------------<br>
+<%end%>
+
+<br><br>
+<a href='/home/destroy'>[전체 삭제]</a>

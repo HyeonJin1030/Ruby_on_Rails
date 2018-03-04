@@ -1,0 +1,20 @@
+<form action='/home/update/<%=@post.id%>' method='post'>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    제목: <input type="text" name="post_title" value='<%=@post.title%>'><br>
+    내용: <textarea name="post_content" ><%=@post.content%></textarea><br>
+    <input type="submit" value="제출">
+</form>
+<br><br>
+<!-- 위 부분은 form_for 에서 실행 되지 않을 것이다. home_controller 참고 -->
+------------------form_for----------------------
+<br><br>
+
+<!--post table의 속성으로만 이름을 지을 수 있음-->
+<!-- form_tag와 다르게 value를 채워주지 않아도 알아서 채워줌 -->
+<%=form_for(@post ,url: post_path, method: "patch") do |f| %>
+    <%=f.label :title, '제목:'%> 
+    <%=f.text_field :title%><br>
+    <%=f.label :contet, '내용:'%>
+    <%=f.text_area :content%><br>
+    <%=f.submit '제출'%>
+<%end%>
