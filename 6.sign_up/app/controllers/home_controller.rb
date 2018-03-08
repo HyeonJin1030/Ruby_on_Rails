@@ -4,14 +4,14 @@ class HomeController < ApplicationController
   end
 
   def new
-    @posts = Post.new
+    @post = Post.new
   end
 
   def create
-    @post = Post.new #테이블에 한 행 추가
-    @post.title = params[:post][:title] #form_tag와 차이: 두번 깜
-    @post.content = params[:post][:content]
-    @post.save #테이블에 써준 내용을 저장
+    post = Post.new #테이블에 한 행 추가
+    post.title = params[:post][:title] #form_tag와 차이: 두번 깜
+    post.content = params[:post][:content]
+    post.save #테이블에 써준 내용을 저장
     redirect_to '/home/index'
   end
   
